@@ -1,8 +1,9 @@
+name: Daily Notion Briefing Auto-Uploader
+
 on:
   workflow_dispatch:
   schedule:
     - cron: '0 22 * * *'   # UTC 22시 = 한국 오전 7시
-  workflow_dispatch:
 
 jobs:
   build:
@@ -13,7 +14,7 @@ jobs:
         with:
           python-version: '3.11'
       - run: pip install requests google-genai
-      - name: 스크립트 실행
+      - name: run-briefing
         env:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
           NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
