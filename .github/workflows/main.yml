@@ -3,7 +3,8 @@ name: Daily Notion Briefing Auto-Uploader
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 22 * * *'   # UTC 22시 = 한국 오전 7시
+    - cron: '10 21 * * *'   # UTC 21:10 = KST 06:10
+    - cron: '10 9 * * *'    # UTC 09:10 = KST 18:10
 
 jobs:
   build:
@@ -14,9 +15,10 @@ jobs:
         with:
           python-version: '3.11'
       - run: pip install requests google-genai
-      - name: run-briefing
+      - name: run-radar
         env:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
           NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          TOP_N: '5'
         run: python main.py
