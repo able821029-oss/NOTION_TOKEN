@@ -48,7 +48,6 @@ payload = {
 }
 
 res = requests.post(url, headers=headers, json=payload)
-if res.status_code == 200:
-    print("성공적으로 노션에 업로드되었습니다.")
-else:
-    print(f"업로드 실패 ({res.status_code}): {res.text}")
+# 기존 res = requests.post(...) 코드 바로 아래에 추가
+res.raise_for_status()
+print("성공적으로 노션에 업로드되었습니다.")
