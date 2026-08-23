@@ -1,8 +1,7 @@
-name: Daily Notion Briefing Auto-Uploader
-
 on:
+  workflow_dispatch:
   schedule:
-    - cron: '0 23 * * *' # 매일 아침 8시 (한국시간)
+    - cron: '0 22 * * *'   # UTC 22시 = 한국 오전 7시
   workflow_dispatch:
 
 jobs:
